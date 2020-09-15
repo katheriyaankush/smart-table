@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'open-sans';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url('./OpenSans-Regular.woff2') format('woff2');
+}
+
+body {
+  background-color: #fcf9f9;
+  display: grid;
+  justify-content: center;
+  font-family: 'open sans';
+}
+
+.product-list {
+  display: grid;
+  margin-top: 30px;
+}
+
+.product-list table {
+  border-collapse: collapse;
+  border: 1px solid #626a80;
+}
+
+.product-list thead, .product-list tfoot {
+  color: #ffffff;
+}
+
+.product-list tbody, .product-list p{
+  color: #ffffff;
+}
+
+.product-list th, .product-list td {
+  border: 1px solid #626a80;
+  padding: 5px;
+}
+
+.product-list th {
+  background-color:rgb(14, 87, 223);
+}
+
+.product-list th:first-child {
+  width: 300px;
+}
+
+.product-list th:last-child {
+  width: 100px;
+}
+
+.product-list tr:nth-child(2n) {
+  background-color: #21242c;
+}
+
+.product-list tr:nth-child(2n+1) {
+  background-color: #2a2f3d;
+}
+
+.product-list td:last-child {
+  text-align: right;
+}
+
+.product-list input {         
+  border-top-left-radius: 5px;         
+  border-top-right-radius: 5px;         
+  border-bottom-left-radius: 5px;         
+  border-bottom-right-radius: 5px;         
+  background: #fcf9f9 no-repeat 2px 2px;         
+  padding:5px 1px 6px 5px;         
+  border:2px solid #155af0c9;      
+  margin-bottom: 6px;   
+  margin-left: 3px;
+}         
+.product-list input:focus {         
+  width: 400px;         
+  transition: all 0.30s ease-in-out;         
+  border: 6px solid #6085eb;         
+}
