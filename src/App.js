@@ -15,7 +15,7 @@ state = {
 
 }
 
- async componentDidMount(){
+ componentDidMount(){
 const promise1 = new Promise((resolve, reject) =>  
 fetch(`${process.env.PUBLIC_URL}/api/branch1.json`)
 .then((r) => r.json())
@@ -127,40 +127,47 @@ else{
 
 
 
+let tableElement = null;
+if(this.state.combinedUniqueData){
+   tableElement =  <div className="product-list"><input placeholder="Search Products" onChange= {(e)=>this.onChangeHandler(e)} value={this.state.search}  type="text" />
+  <table>
+<thead>
+<tr>
+ <th onClick={()=>this.setState({sort:!this.state.sort})} >Product</th>
+ <th>Revenue</th>
+</tr>
+</thead>
+<tbody>
+
+
+{
+allData.map((val,i)=>{
+return(
+<tr key = {val.id}>
+<td> {val.name} </td>
+<td>{formatNumber(val.sold * val.unitPrice)  }</td>
+</tr>
+
+)})
+}
+</tbody>
+<tfoot>
+<tr>
+ <td>Total</td>
+<td>{this.state.total}</td>
+</tr>
+</tfoot>
+</table>
+
+</div>
+
+
+}
+
     return (
-      <div className="product-list">
-
-        <input placeholder="Search Products" onChange= {(e)=>this.onChangeHandler(e)} value={this.state.search}  type="text" />
-        
-        <table>
-        <thead>
-          <tr>
-            <th onClick={()=>this.setState({sort:!this.state.sort})} >Product</th>
-            <th>Revenue</th>
-          </tr>
-        </thead>
-        <tbody>
-     
-
-     {
-       allData.map((val,i)=>{
-        return(
-         <tr key = {val.id}>
-          <td> {val.name} </td>
-        <td>{formatNumber(val.sold * val.unitPrice)  }</td>
-         </tr>
-
-        )})
-     }
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Total</td>
-    <td>{this.state.total}</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+     <>
+        {tableElement}
+  </>
   );
   }
 }
