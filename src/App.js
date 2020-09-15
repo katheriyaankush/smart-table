@@ -17,11 +17,9 @@ state = {
 
  async componentDidMount(){
 const promise1 = new Promise((resolve, reject) =>  
-
-
-    fetch(`${process.env.PUBLIC_URL}/api/branch1.json`)
+fetch(`${process.env.PUBLIC_URL}/api/branch1.json`)
 .then((r) => r.json())
-.then((d) =>{
+.then((d) => {
 
     resolve(d.products)
     }
@@ -32,8 +30,6 @@ const promise1 = new Promise((resolve, reject) =>
 
 
 const promise2 = new Promise((resolve, reject) =>  
-
-
     fetch(`${process.env.PUBLIC_URL}/api/branch2.json`)
 .then((r2) => r2.json())
 .then((d2) =>{
@@ -47,8 +43,6 @@ const promise2 = new Promise((resolve, reject) =>
 
 
 const promise3 = new Promise((resolve, reject) =>  
-
-
     fetch(`${process.env.PUBLIC_URL}/api/branch3.json`)
 .then((r3) => r3.json())
 .then((d3) =>{
@@ -62,18 +56,14 @@ const promise3 = new Promise((resolve, reject) =>
 
 Promise.all([promise1,promise2,promise3]).then( (dataValue)=>{
 let combinedData = [ ...dataValue[0] , ...dataValue[1], ...dataValue[2]   ]
-
-  const newCombinedData = [];
+const newCombinedData = [];
 const len = combinedData.length;
 for(let i=0; i < len; i++){
 	if(newCombinedData[combinedData[i].id] === undefined) {
-
-  
     newCombinedData[combinedData[i].id] = combinedData[i];
     }
     else {
-
-     
+   
       newCombinedData[combinedData[i].id].sold = newCombinedData[combinedData[i].id].sold + combinedData[i].sold;
 
       }
@@ -84,7 +74,6 @@ let sum=0;
 for(let key in newCombinedData ){
 arrFinal.push(newCombinedData[key]);
 sum  += newCombinedData[key].unitPrice  * newCombinedData[key].sold ;
-
 
 }
 this.setState({combinedUniqueData:arrFinal, allComData:arrFinal, total:sum  })
@@ -101,16 +90,13 @@ this.setState({combinedUniqueData:arrFinal, allComData:arrFinal, total:sum  })
 
   onChangeHandler=(event)=> {
     let value = event.target.value;
-   
     this.setState({search: value});
-
     let dataVal = this.state.allComData;
     let dataSearch=[];
 
     dataSearch = dataVal.filter((dValue)=>{
         return dValue.name.toLowerCase().search(value.toLowerCase()) !== -1;});
   console.log("data",dataSearch);
-
   let sum=0;
   for(let key of dataSearch){
     sum  += key.unitPrice  * key.sold ;
@@ -131,7 +117,6 @@ this.setState({  combinedUniqueData:dataSearch, total:formatNumber(sum)});
   render() {
 
 let allData = [...this.state.combinedUniqueData];
-
 if(this.state.sort){
   allData.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)); 
 }
@@ -167,8 +152,6 @@ else{
 
         )})
      }
-
-
         </tbody>
         <tfoot>
           <tr>
